@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cualejesepokemon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./scss/main.scss">
+  <link rel="shortcut icon" href="./assets/favicon.png" type="image/x-icon">
+</head>
+<body>
+  <main class="app">
+    <fieldset class="app__fieldset">
+      <form class="app__form">
+        <input type="text" name="pokemon" id="pokemon" class="app__input" placeholder="Pokémon">
+        <button type="submit" class="app__submit"><img src="./assets/pokeball.png" alt=""></button>
+      </form>
+    </fieldset>
+    <div class="pokemon">
+      <div class="pokemon__meta">
+        <h1 class="pokemon__name"></h1>
+        <figure class="pokemon__types">
+          
+        </figure>
+      </div>
+      <figure class="pokemon__image">
+        <img src="" alt="">
+      </figure>
+      <ul class="pokemon__stats"></ul>
+    </div>
+  </main>
+
+  <script src="./js/main.js" type="module"></script>
+</body>
+</html>
