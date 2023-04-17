@@ -1,0 +1,10 @@
+@use './variables' as v;
+
+body {
+  background-color: #696969;
+  font-family: v.$ff-roboto;
+  width: 90%;
+  max-width: 1024px;
+  margin-inline: auto;
+  padding: 20px 0;
+}

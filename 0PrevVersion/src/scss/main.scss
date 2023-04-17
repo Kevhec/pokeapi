@@ -13,8 +13,7 @@ body {
     width: 90%;
     max-width: 400px;
 
-    &__form {
-        display: flex;
+    &__fieldset {
         margin-bottom: 50px;
         background-image: url(../assets/search_banner.jpg);
         background-size: cover;
@@ -22,6 +21,10 @@ body {
         padding: 5px;
         border: 2px solid #1b1b1b;
         border-radius: 5px;
+    }
+
+    &__form {
+        display: flex;
     }
 
     &__input {
@@ -38,7 +41,7 @@ body {
     }
 }
 
-.card {
+.pokemon {
     background-color: #afafaf;
     padding: 20px;
     border-radius: 10px;

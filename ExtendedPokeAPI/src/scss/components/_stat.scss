@@ -1,0 +1,67 @@
+@use '../globals/variables' as v;
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: v.rem(8);
+
+  &__name {
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr;
+    text-align: center;
+    text-transform: capitalize;
+    font-size: v.rem(14);
+
+    span {
+      font-size: v.rem(14);
+      opacity: .8;
+    }
+  }
+
+  &__bar-content {
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr;
+    align-items: center;
+    gap: 16px;
+  }
+
+  &__bar-container {
+    width: 100%;
+    height: 18px;
+    border: 1px solid black;
+    border-radius: 50px;
+    padding: 2px;
+  }
+
+  &__bar {
+    height: 100%;
+    flex-grow: 1;
+    display: block;
+    border-radius: 50px 5px 5px 50px;
+    background-color: wheat;
+
+    &--hp {
+      background-color: #FF4D4D;
+    }
+
+    &--attack {
+      background-color: #FFA500;
+    }
+
+    &--defense {
+      background-color: #00BFFF;
+    }
+
+    &--special-attack {
+      background-color: #BA55D3;
+    }
+
+    &--special-defense {
+      background-color: #FFD700;
+    }
+
+    &--speed {
+      background-color: #9ACD32;
+    }
+  }
+}

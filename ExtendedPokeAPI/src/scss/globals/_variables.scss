@@ -1,0 +1,13 @@
+$ff-roboto: 'Poppins', sans-serif;
+
+$cl-primary: #74191c;
+$cl-secondary: #afafaf;
+$cl-background: #696969;
+$cl-white: #ffffff;
+$cl-black: #1b1b1b;
+$checkbox-inactive-color: #959495;
+
+@function rem($px) {
+  $result: calc($px / 16) + rem;
+  @return $result;
+}

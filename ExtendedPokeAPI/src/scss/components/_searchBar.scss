@@ -1,0 +1,33 @@
+@use '../globals/variables' as v;
+
+.searchBar {
+
+  &__form {
+    display: flex;
+    margin-bottom: 50px;
+    background-image: url(../assets/search_banner.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 5px;
+    border: 2px solid #1b1b1b;
+    border-radius: 5px;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  &__input {
+    flex-grow: 2;
+    border: 1px solid #1b1b1b;
+    border-radius: 3px;
+    padding: 0 10px;
+  }
+
+  &__submit {
+    width: 50px;
+    background-color: unset;
+    border: unset;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+  }
+}

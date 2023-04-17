@@ -1,0 +1,74 @@
+@use '../globals/variables' as v;
+
+.card {
+  position: relative;
+  aspect-ratio: 2 / 3;
+  border-radius: 10px;
+  transform-style: preserve-3d;
+  transition: transform .5s ease;
+
+  &__container {
+    width: min(250px, 100%);
+    margin-inline: auto;
+  }
+
+  &--flip {
+    transform: rotateY(180deg)
+  }
+
+  &__front,
+  &__back {
+    padding: 16px;
+    backface-visibility: hidden;
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  &__front {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__back {
+    transform: rotateY(180deg);
+    position: absolute;
+    background-color: #afafaf;
+  }
+  
+  &__sprite {
+    margin-inline: auto;
+    margin-bottom: 20px;
+
+    img {
+      object-fit: contain;
+    }
+  }
+
+  &__name {
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.897);
+
+    &--black {
+      color: v.$cl-black;
+    }
+  }
+
+  &__frontContent {
+    height: 100%;
+    background-color: rgb(255, 242, 217);
+    padding: 10px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  &__fact {
+    font-size: v.rem(12);
+  }
+
+  &__stats {
+    padding: 0;
+    list-style-type: none;
+  }
+}

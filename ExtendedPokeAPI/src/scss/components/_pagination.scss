@@ -1,0 +1,27 @@
+@use '../globals/variables' as v;
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin: 16px 0;
+
+  &__link {
+    background-color: white;
+    border: unset;
+    min-width: 40px;
+    padding: 5px;
+
+    &:is(:hover, :focus) {
+      background-color: v.$cl-secondary;
+    }
+
+    &--current {
+      background-color: v.$cl-primary;
+      color: white;
+      &:is(:hover, :focus) {
+        background-color: v.$cl-primary;
+      }
+    }
+  }
+}
