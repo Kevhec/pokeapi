@@ -1,8 +1,15 @@
+import { useState } from 'react'
 import { useData } from '../../../hooks/useData'
 import { useRandomFact } from '../../../hooks/useRandomFact'
-import { Loader } from '../../loader'
+import { toSoftColor } from '../../../utils/toSoftColor'
+import Loader from '../../loader'
+import CardFact from './cardFact'
+import CardFigure from './cardFigure'
+import CardImage from './cardImage'
 
-export function CardFront ({ name, image, imageLoading, handleImageLoad, pokemonId }) {
+export default function CardFront ({ name, image, pokemonId }) {
+  const lowContrastColors = ['white', 'yellow', 'pink']
+  const [imageLoading, setImageLoading] = useState(true)
   const {
     data: {
       textInfo,
@@ -13,31 +20,41 @@ export function CardFront ({ name, image, imageLoading, handleImageLoad, pokemon
 
   const { randomFact } = useRandomFact({ textInfo })
 
+  const handleImageLoad = () => {
+    setImageLoading(false)
+  }
+
+  const color = toSoftColor(colorName)
+
   return (
     <div
       className='card__front'
-      style={{ backgroundImage: `linear-gradient(to bottom, ${colorName || '#1b1b1b'} 35%, #afafaf 35%)` }}
+      style={{ backgroundImage: `linear-gradient(to bottom, ${color || '#1b1b1b'} 35%, #afafaf 35%)` }}
     >
-      <h3 className={`card__name ${['white', 'yellow', 'pink'].some(color => colorName === color) ? 'card__name--black' : ''}`}>{name}</h3>
-      <figure
-        className='card__sprite'
-        style={{
-          width: '150px',
-          aspectRatio: '1/1'
-        }}
+      <h3
+        className={
+          `card__name ${lowContrastColors.some(color => colorName === color)
+            ? 'card__name--black'
+            : ''
+          }`
+        }
       >
+        {name}
+      </h3>
+      <CardFigure>
         {imageLoading || dataLoading ? <Loader /> : ''}
-        <img
-          src={image || 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/0.png'}
-          alt='' onLoad={handleImageLoad} style={{ display: imageLoading || dataLoading ? 'none' : 'block' }}
+        <CardImage
+          src={image}
+          name={name}
+          handleImageLoad={handleImageLoad}
+          dataLoading={dataLoading}
+          imageLoading={imageLoading}
         />
-      </figure>
-      <div
-        className='card__frontContent'
-        style={{ display: imageLoading || dataLoading ? 'none' : 'block' }}
-      >
-        <p className='card__fact'>{randomFact || ''}</p>
-      </div>
+      </CardFigure>
+
+      <CardFact imageLoading={imageLoading} dataLoading={dataLoading}>
+        {randomFact || ''}
+      </CardFact>
     </div>
   )
 }

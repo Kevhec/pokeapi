@@ -1,14 +1,13 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { getPokemonPage } from '../services/getPokemonPage'
 
-export function usePokemonPages ({ currentPage }) {
+export function usePokemonPages () {
   const [pokemonPage, setPokemonPage] = useState({})
   const [offset, setOffset] = useState(0)
-  const previousPage = useRef(currentPage)
 
   const onPageChange = () => {
+    if (offset === undefined || offset === null || isNaN(offset)) return
     const fetchPages = async () => {
-      if (previousPage.current === currentPage) return
       try {
         const newPage = await getPokemonPage(offset, 20)
         setPokemonPage(newPage)
@@ -21,7 +20,6 @@ export function usePokemonPages ({ currentPage }) {
 
   const updateOffset = (page) => {
     const newOffset = (page - 1) * 20
-    previousPage.current = page - 1
     setOffset(newOffset)
   }
 

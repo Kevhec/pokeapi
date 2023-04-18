@@ -1,7 +1,7 @@
 import { usePagination } from '../../hooks/usePagination'
 import { PaginationButton } from './paginationButton'
 
-export function Pagination ({ maxElements, updateOffset, onPageChange, currentPage }) {
+export default function Pagination ({ maxElements, updateOffset, onPageChange, currentPage }) {
   const {
     buttonsPages,
     pages,

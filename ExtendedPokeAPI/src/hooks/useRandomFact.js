@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getRandomInt } from '../services/getRandomInt'
+import { getRandomInt } from '../utils/getRandomInt'
 
 export function useRandomFact ({ textInfo }) {
   const [randomFact, setRandomFact] = useState('')

@@ -1,6 +1,6 @@
 import { Stat } from '../stat'
 
-export function CardBack ({ stats }) {
+export default function CardBack ({ stats }) {
   return (
     <div className='card__back'>
       <ul className='card__stats'>

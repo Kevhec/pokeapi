@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { usePokemonPages } from '../../hooks/usePokemonPages'
-import { Pagination } from '../pagination/pagination'
-import { CardsSection } from './card/cardsSection'
+import Pagination from '../pagination/pagination'
+import CardsSection from './card/cardsSection'
 
-export function Results () {
+export default function Results () {
   const [currentPage, setCurrentPage] = useState(1)
 
   const {

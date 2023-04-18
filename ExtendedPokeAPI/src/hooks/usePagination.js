@@ -10,6 +10,8 @@ export function usePagination ({ maxElements, updateOffset, currentPage, onPageC
   const handlePaginationChange = useCallback((page) => {
     onPageChange(page)
     updateOffset(page)
+    document.body.scrollTop = 0
+    document.documentElement.scrollTop = 0
   }, [updateOffset])
 
   const generateLinks = useCallback(() => {

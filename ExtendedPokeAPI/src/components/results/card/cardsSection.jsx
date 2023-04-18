@@ -1,6 +1,6 @@
-import { Card } from './card'
+import Card from './card'
 
-export function CardsSection ({ pokemonList }) {
+export default function CardsSection ({ pokemonList }) {
   if (!pokemonList) return
 
   return (

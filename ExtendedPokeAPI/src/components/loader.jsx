@@ -1,4 +1,4 @@
-export function Loader () {
+export default function Loader () {
   return (
     <div className='sk-circle'>
       <div className='sk-circle1 sk-child' />

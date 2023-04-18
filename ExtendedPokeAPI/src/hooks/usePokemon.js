@@ -11,7 +11,7 @@ const TEMPLATE = {
   stats: []
 }
 
-export function usePokemon ({ url }) {
+export default function usePokemon ({ url }) {
   const [loading, setLoading] = useState(false)
   const [pokemon, setPokemon] = useState(TEMPLATE)
 
