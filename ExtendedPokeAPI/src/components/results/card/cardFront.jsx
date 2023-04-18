@@ -12,8 +12,8 @@ export default function CardFront ({ name, types, image, pokemonId }) {
   const [imageLoading, setImageLoading] = useState(true)
   const {
     data: {
-      textInfo,
-      colorName
+      textInfo = '',
+      colorName = ''
     },
     dataLoading
   } = useData({ pokemonId })

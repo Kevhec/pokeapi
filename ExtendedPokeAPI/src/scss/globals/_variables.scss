@@ -11,3 +11,9 @@ $checkbox-inactive-color: #959495;
   $result: calc($px / 16) + rem;
   @return $result;
 }
+
+@mixin mdq {
+  @media screen and (min-width: 48em) {
+    @content;
+  }
+}

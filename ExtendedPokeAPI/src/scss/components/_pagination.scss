@@ -7,21 +7,49 @@
   margin: 16px 0;
 
   &__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
     background-color: white;
     border: unset;
-    min-width: 40px;
-    padding: 5px;
+    min-width: 30px;
+    height: 30px;
+    font-size: v.rem(12);
+    font-weight: bold;
 
+    @include v.mdq {
+      min-width: 40px;
+      height: 30px;
+    }
+    
     &:is(:hover, :focus) {
       background-color: v.$cl-secondary;
     }
-
+    
     &--current {
       background-color: v.$cl-primary;
       color: white;
       &:is(:hover, :focus) {
         background-color: v.$cl-primary;
       }
+    }
+
+    &--small {
+      min-width: 20px;
+      height: 20px;
+      margin: auto 0;
+      font-size: v.rem(10);
+
+      @include v.mdq {
+        min-width: 30px;
+      }
+    }
+
+    img {
+      width: 10px;
+      aspect-ratio: 1 / 1;
+      color: v.$cl-black;
     }
   }
 }

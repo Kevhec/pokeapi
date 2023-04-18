@@ -6,10 +6,15 @@ export function useRandomFact ({ textInfo }) {
 
   useEffect(() => {
     if (!textInfo) return
+    let newRandomFact
     const langFilter = textInfo.filter(data => data.language.name === 'es')
-    let randomIndex = getRandomInt(1, (langFilter.length - 1))
-    if (randomIndex < 0) randomIndex++
-    const newRandomFact = langFilter[randomIndex].flavor_text
+    if (langFilter.length) {
+      let randomIndex = getRandomInt(1, (langFilter.length - 1))
+      if (randomIndex < 0) randomIndex = 0
+      newRandomFact = langFilter[randomIndex].flavor_text
+    } else {
+      newRandomFact = 'Sin datos'
+    }
 
     setRandomFact(newRandomFact)
   }, [textInfo])

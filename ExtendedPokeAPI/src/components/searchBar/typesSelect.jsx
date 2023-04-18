@@ -26,7 +26,7 @@ export function TypesSelect () {
       newSelectedTypes = [...selectedTypes, newType]
     }
 
-    if (newSelectedTypes.length === 3) {
+    if (newSelectedTypes.length === 2) {
       setLimit(true)
     } else {
       setLimit(false)

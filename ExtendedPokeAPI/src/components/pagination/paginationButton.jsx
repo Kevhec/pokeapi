@@ -1,7 +1,9 @@
 import { useRef } from 'react'
 
-export function PaginationButton ({ children, name, pointingPage, currentPage, handlePaginationChange }) {
+export function PaginationButton ({ children, name, pointingPage, currentPage, handlePaginationChange, aditionalClasses }) {
   const upperNavButton = useRef(null)
+
+  const buttonClasses = `pagination__link pagination__link--${name} ${pointingPage === currentPage ? 'pagination__link--current' : ''}`.concat(aditionalClasses || '')
 
   const handleKeyDown = (evt) => {
     if (evt.keyCode === 32) {
@@ -13,7 +15,7 @@ export function PaginationButton ({ children, name, pointingPage, currentPage, h
 
   return (
     <button
-      className={`pagination__link pagination__link--${name} ${pointingPage === currentPage ? 'pagination__link--current' : ''}`}
+      className={buttonClasses}
       onClick={() => handlePaginationChange(pointingPage)}
       onKeyDown={handleKeyDown}
     >
