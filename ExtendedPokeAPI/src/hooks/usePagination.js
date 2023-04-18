@@ -20,11 +20,11 @@ export function usePagination ({ maxElements, updateOffset, currentPage, onPageC
     let startPage = 1
     let endPage = pages
 
-    if (currentPage > Math.floor(MAX_BUTTONS / 2)) {
-      startPage = Math.max(currentPage - Math.floor(MAX_BUTTONS / 2), 1)
-      endPage = Math.min(startPage + MAX_BUTTONS - 1, pages)
+    if (currentPage > MAX_BUTTONS / 2) {
+      startPage = currentPage - Math.floor(MAX_BUTTONS / 2)
+      endPage = currentPage + Math.floor(MAX_BUTTONS / 2)
     } else {
-      endPage = Math.min(MAX_BUTTONS, pages)
+      endPage = MAX_BUTTONS
     }
 
     for (let i = startPage; i <= endPage; i++) {
