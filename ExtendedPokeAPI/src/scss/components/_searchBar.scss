@@ -1,6 +1,12 @@
 @use '../globals/variables' as v;
 
 .searchBar {
+  margin-bottom: 50px;
+  padding: 10px;
+  border: 2px solid #1b1b1b;
+  border-radius: 5px;
+  max-width: 720px;
+  margin-inline: auto;
 
   &__container {
     display: grid;
@@ -9,16 +15,7 @@
     grid-auto-flow: dense;
     gap: 10px;
   }
-
-  &__form {
-    margin-bottom: 50px;
-    padding: 10px;
-    border: 2px solid #1b1b1b;
-    border-radius: 5px;
-    max-width: 720px;
-    margin-inline: auto;
-  }
-
+  
   &__input {
     border: 1px solid #1b1b1b;
     border-radius: 3px;

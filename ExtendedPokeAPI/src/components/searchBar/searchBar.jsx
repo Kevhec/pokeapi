@@ -10,7 +10,7 @@ export default function SearchBar () {
   }
 
   return (
-    <form onSubmit={handleSubmit} className='searchBar__form'>
+    <form onSubmit={handleSubmit} className='searchBar'>
       <Container parent='searchBar'>
         <InputText />
         <TypesSelect id='mainTypeSelect' type='Main Type' />

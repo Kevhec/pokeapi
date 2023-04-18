@@ -38,22 +38,41 @@
     position: absolute;
     background-color: #afafaf;
   }
-  
-  &__sprite {
-    margin-inline: auto;
-    margin-bottom: 20px;
 
-    img {
-      object-fit: contain;
-    }
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
-
+  
   &__name {
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.897);
 
     &--black {
       color: v.$cl-black;
+    }
+  }
+
+  &__types {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 50px;
+    background-color: v.$cl-white;
+    padding: 4px;
+
+    &--black {
+      background-color: v.$cl-black;
+    }
+  }
+
+  &__sprite {
+    margin-inline: auto;
+    margin-bottom: 20px;
+
+    img {
+      object-fit: contain;
     }
   }
 

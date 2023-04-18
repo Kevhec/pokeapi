@@ -1,7 +1,4 @@
 import { useEffect } from 'react'
-import Footer from './components/footer.jsx'
-import Header from './components/header.jsx'
-import Main from './components/main.jsx'
 import Results from './components/results/results.jsx'
 import SearchBar from './components/searchBar/searchBar.jsx'
 
@@ -23,17 +20,17 @@ export function App () {
 
   return (
     <>
-      <Header>
+      <header>
         <SearchBar />
-      </Header>
-      <Main>
+      </header>
+      <main>
         <Results />
-      </Main>
-      <Footer>
+      </main>
+      <footer>
         <p style={{ textAlign: 'center', color: 'White' }}>
           Pokedex - KevHec
         </p>
-      </Footer>
+      </footer>
     </>
   )
 }

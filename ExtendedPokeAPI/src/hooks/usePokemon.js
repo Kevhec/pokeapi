@@ -8,7 +8,8 @@ const TEMPLATE = {
       'official-artwork': { front_default: '' }
     }
   },
-  stats: []
+  stats: [],
+  types: []
 }
 
 export default function usePokemon ({ url }) {
@@ -39,8 +40,9 @@ export default function usePokemon ({ url }) {
         'official-artwork': { front_default: image }
       }
     },
-    stats
+    stats,
+    types
   } = pokemon
 
-  return { loading, id, name, image, stats }
+  return { loading, id, name, image, stats, types }
 }

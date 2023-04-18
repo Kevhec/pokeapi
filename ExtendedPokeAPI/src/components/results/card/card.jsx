@@ -12,7 +12,8 @@ export default function Card ({ url }) {
     id,
     name,
     image,
-    stats
+    stats,
+    types
   } = usePokemon({ url })
 
   return (
@@ -25,6 +26,7 @@ export default function Card ({ url }) {
         <div className={`card ${flip ? 'card--flip' : ''}`}>
           <CardFront
             name={name}
+            types={types}
             image={image}
             pokemonId={id}
           />
