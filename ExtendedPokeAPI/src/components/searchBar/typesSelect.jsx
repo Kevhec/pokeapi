@@ -10,8 +10,8 @@ export function TypesSelect () {
   const [limit, setLimit] = useState(false)
   const { options } = useOptions()
   const dropdownRef = useRef(null)
-  useClickOutside(dropdownRef, () => {
-    if (!active) return
+
+  useClickOutside(dropdownRef, active, () => {
     setActive(false)
   })
 
@@ -45,12 +45,6 @@ export function TypesSelect () {
     }
   }
 
-  const handleBlur = (evt) => {
-    if (!dropdownRef.current.contains(evt.relatedTarget)) {
-      setActive(false)
-    }
-  }
-
   useEffect(() => {
     let newHasDropdown
     if (!active) {
@@ -76,7 +70,6 @@ export function TypesSelect () {
       <div
         ref={dropdownRef}
         className={`types-dropdown__select ${active ? 'types-dropdown__select--active' : ''}`}
-        onBlur={handleBlur}
         role='listbox'
       >
         {

@@ -1,9 +1,12 @@
 import { useEffect } from 'react'
 
-export function useClickOutside (ref, handler) {
+export function useClickOutside (ref, active, handler) {
   useEffect(() => {
     const listener = (evt) => {
-      if (ref.current && !ref.current.contains(evt.target) && evt.target !== ref.current.parentElement.children[0]) {
+      if (ref.current &&
+        !ref.current.parentElement.contains(evt.target) &&
+        active === true &&
+        !ref.current.contains(evt.relatedTarget)) {
         handler()
       }
     }

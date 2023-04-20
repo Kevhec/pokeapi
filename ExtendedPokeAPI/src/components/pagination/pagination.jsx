@@ -11,7 +11,7 @@ export default function Pagination ({ maxElements, updateOffset, onPageChange, c
   return (
     <nav className='pagination'>
       {
-        currentPage - 10 >= 0 &&
+        currentPage - 10 > 0 &&
           <PaginationButton
             name='goBack10'
             pointingPage={currentPage - 10}

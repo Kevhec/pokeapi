@@ -18,6 +18,7 @@ export function PaginationButton ({ children, name, pointingPage, currentPage, h
       className={buttonClasses}
       onClick={() => handlePaginationChange(pointingPage)}
       onKeyDown={handleKeyDown}
+      disabled={currentPage === pointingPage}
     >
       {children}
     </button>

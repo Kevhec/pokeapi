@@ -51,7 +51,11 @@ export default function CardFront ({ name, types, image, pokemonId }) {
           {types.map(type => {
             const { type: { name } } = type
             return (
-              <figure className={`type type--${name}`} key={name}>
+              <figure
+                className={`type type--${name}`}
+                style={{ minWidth: '28px', aspectRatio: '1 / 1' }}
+                key={name}
+              >
                 <img
                   src={`/types/type-${name}.svg`}
                   alt={`Type ${name}`}

@@ -77,7 +77,8 @@
   }
 
   &__frontContent {
-    height: 100%;
+    flex: 1;
+    min-height: 128px;
     background-color: rgb(255, 242, 217);
     padding: 10px;
     border-radius: 8px;
@@ -86,6 +87,16 @@
 
   &__fact {
     font-size: v.rem(12);
+    position: relative;
+
+    &:focus {
+      outline-offset: 5px;
+      outline-color: v.$cl-primary;
+    }
+
+    &--overflow {
+      animation: overflowedFact 4s forwards linear;
+    }
   }
 
   &__stats {
