@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 
-export function usePagination ({ maxElements, updateOffset, currentPage, onPageChange, debouncedChange }) {
+export function usePagination ({ maxElements, updateOffset, currentPage, onPageChange }) {
   const [pages, setPages] = useState(0)
   const [buttonsPages, setButtonsPages] = useState([])
   useEffect(() => {
@@ -20,7 +20,10 @@ export function usePagination ({ maxElements, updateOffset, currentPage, onPageC
     let startPage = 1
     let endPage = pages
 
-    if (currentPage > MAX_BUTTONS / 2) {
+    if (currentPage >= (pages - Math.floor(MAX_BUTTONS / 2))) {
+      startPage = pages - MAX_BUTTONS + 1
+      endPage = pages
+    } else if (currentPage > MAX_BUTTONS / 2) {
       startPage = currentPage - Math.floor(MAX_BUTTONS / 2)
       endPage = currentPage + Math.floor(MAX_BUTTONS / 2)
     } else {

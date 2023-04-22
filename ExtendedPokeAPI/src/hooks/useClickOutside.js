@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 
+// Execute handler when user clicks outside ref
 export function useClickOutside (ref, active, handler) {
   useEffect(() => {
     const listener = (evt) => {

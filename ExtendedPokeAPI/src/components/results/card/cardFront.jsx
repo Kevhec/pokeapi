@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useData } from '../../../hooks/useData'
 import { useRandomFact } from '../../../hooks/useRandomFact'
 import { toSoftColor } from '../../../utils/toSoftColor'
@@ -15,10 +15,19 @@ export default function CardFront ({ name, types, image, pokemonId }) {
       textInfo = '',
       colorName = ''
     },
-    dataLoading
+    dataLoading,
+    getInfo
   } = useData({ pokemonId })
 
-  const { randomFact } = useRandomFact({ textInfo })
+  useEffect(() => {
+    getInfo({ pokemonId })
+  }, [pokemonId])
+
+  const { randomFact, getRandomEntry } = useRandomFact({ textInfo })
+
+  useEffect(() => {
+    getRandomEntry({ textInfo })
+  }, [textInfo])
 
   const handleImageLoad = () => {
     setImageLoading(false)
@@ -76,7 +85,13 @@ export default function CardFront ({ name, types, image, pokemonId }) {
         />
       </CardFigure>
 
-      <CardFact imageLoading={imageLoading} dataLoading={dataLoading}>
+      <CardFact
+        imageLoading={imageLoading}
+        dataLoading={dataLoading}
+        pokemonId={pokemonId}
+        getRandomEntry={getRandomEntry}
+        textInfo={textInfo}
+      >
         {randomFact || ''}
       </CardFact>
     </div>

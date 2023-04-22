@@ -1,23 +1,20 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { getRandomInt } from '../utils/getRandomInt'
 
-export function useRandomFact ({ textInfo }) {
+export function useRandomFact () {
   const [randomFact, setRandomFact] = useState('')
 
-  useEffect(() => {
-    if (!textInfo) return
-    let newRandomFact
-    const langFilter = textInfo.filter(data => data.language.name === 'es')
-    if (langFilter.length) {
+  const getRandomEntry = useCallback(
+    ({ textInfo }) => {
+      if (!textInfo?.length) return
+
+      const langFilter = textInfo.filter(data => data.language.name === 'es')
+
       let randomIndex = getRandomInt(1, (langFilter.length - 1))
-      if (randomIndex < 0) randomIndex = 0
-      newRandomFact = langFilter[randomIndex].flavor_text
-    } else {
-      newRandomFact = 'Sin datos'
-    }
+      if (randomIndex < 0 || textInfo.length === 1) randomIndex = 0
 
-    setRandomFact(newRandomFact)
-  }, [textInfo])
-
-  return { randomFact }
+      const newRandomFact = langFilter[randomIndex].flavor_text
+      setRandomFact(newRandomFact)
+    }, [])
+  return { randomFact, getRandomEntry }
 }

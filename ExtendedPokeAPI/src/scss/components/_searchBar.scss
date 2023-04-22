@@ -11,7 +11,7 @@
   &__container {
     display: grid;
     grid-template-columns: 1fr .1fr;
-    grid-template-rows: repeat(2, 1fr);
+/*     grid-template-rows: repeat(2, 1fr); */
     grid-auto-flow: dense;
     gap: 10px;
   }
@@ -34,5 +34,6 @@
     border-radius: 50%;
     overflow: hidden;
     cursor: pointer;
+    margin-left: 5px;
   }
 }

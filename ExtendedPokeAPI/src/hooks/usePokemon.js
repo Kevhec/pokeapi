@@ -32,17 +32,5 @@ export default function usePokemon ({ url }) {
     fetchPokemon({ url })
   }, [])
 
-  const {
-    id,
-    name,
-    sprites: {
-      other: {
-        'official-artwork': { front_default: image }
-      }
-    },
-    stats,
-    types
-  } = pokemon
-
-  return { loading, id, name, image, stats, types }
+  return { pokemon, loading }
 }

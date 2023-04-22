@@ -1,50 +1,42 @@
-import { useEffect, useState } from 'react'
-import { getInfo } from '../services/getInfo'
+import { useCallback, useState } from 'react'
+import { searchInfo } from '../services/getInfo'
 
-const TEMPLATE = {
-  data: {
-    textInfo: '',
-    colorName: ''
-  }
-}
+// Template of wanted data to avoid "undefined" bugs
 
-export function useData ({ pokemonId }) {
+export function useData () {
   const [dataLoading, setDataLoading] = useState(false)
-  const [data, setData] = useState(TEMPLATE)
+  const [data, setData] = useState({})
 
-  useEffect(() => {
-    const fetchInfo = async () => {
+  const getInfo = useCallback(
+    async ({ pokemonId }) => {
       try {
         if (!pokemonId) return
-        let newInfo = TEMPLATE
         setDataLoading(true)
+
+        // TODO: Handle fetch 404 error
+        const response = await searchInfo(pokemonId)
         const {
-          json: {
-            flavor_text_entries: textInfo,
-            color: { name: colorName }
-          }
-        } = await getInfo(pokemonId)
-        if (!textInfo) {
-          newInfo = {
-            textInfo: '',
-            colorName
-          }
-        } else {
-          newInfo = {
+          responseToExport: {
             textInfo,
             colorName
           }
+        } = response
+
+        const newInfo = {
+          textInfo,
+          colorName
         }
+
         setDataLoading(false)
         setData(newInfo)
       } catch (error) {
         console.error(error)
       }
-    }
-    fetchInfo()
-  }, [pokemonId])
+    }, [])
+
   return {
     data,
-    dataLoading
+    dataLoading,
+    getInfo
   }
 }

@@ -26,6 +26,7 @@ export function TypesSelect () {
       newSelectedTypes = [...selectedTypes, newType]
     }
 
+    // Max types that can be selected
     if (newSelectedTypes.length === 2) {
       setLimit(true)
     } else {
@@ -39,6 +40,7 @@ export function TypesSelect () {
     setActive(!active)
   }
 
+  // Toggle select with spacebar
   const handleKeyDown = (evt) => {
     if (evt.keyCode === 32) {
       setActive(!active)
@@ -46,6 +48,7 @@ export function TypesSelect () {
   }
 
   useEffect(() => {
+    // More control of dropdown state
     let newHasDropdown
     if (!active) {
       newHasDropdown = false

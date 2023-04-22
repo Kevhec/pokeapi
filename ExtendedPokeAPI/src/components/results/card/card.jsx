@@ -8,12 +8,18 @@ import CardBack from './cardBack.jsx'
 export default function Card ({ url }) {
   const [flip, setFlip] = useState(false)
   const {
-    loading,
-    id,
-    name,
-    image,
-    stats,
-    types
+    pokemon: {
+      id,
+      name,
+      sprites: {
+        other: {
+          'official-artwork': { front_default: image }
+        }
+      },
+      stats,
+      types
+    },
+    loading
   } = usePokemon({ url })
 
   return (

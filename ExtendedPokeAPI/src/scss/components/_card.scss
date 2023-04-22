@@ -9,9 +9,14 @@
   box-shadow: 0px 5px 8px #3030309c;
 
   &__container {
-    width: min(250px, 100%);
+    width: min(300px, 100%);
     margin-inline: auto;
     cursor: pointer;
+
+    &:focus {
+      outline-color: v.$cl-white;
+      outline-offset: 3px;
+    }
   }
 
   &--flip {
@@ -48,6 +53,11 @@
   &__name {
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.897);
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    -ms-text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 
     &--black {
       color: v.$cl-black;
@@ -73,29 +83,6 @@
 
     img {
       object-fit: contain;
-    }
-  }
-
-  &__frontContent {
-    flex: 1;
-    min-height: 128px;
-    background-color: rgb(255, 242, 217);
-    padding: 10px;
-    border-radius: 8px;
-    overflow: hidden;
-  }
-
-  &__fact {
-    font-size: v.rem(12);
-    position: relative;
-
-    &:focus {
-      outline-offset: 5px;
-      outline-color: v.$cl-primary;
-    }
-
-    &--overflow {
-      animation: overflowedFact 4s forwards linear;
     }
   }
 

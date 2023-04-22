@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 
+// Fills select options with data provided by API
 export function useOptions () {
   const [options, setOptions] = useState([])
 

@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
+import CardFactButton from './cardFactButton'
 
-export default function CardFact ({ children, imageLoading, dataLoading }) {
+export default function CardFact ({ children, imageLoading, dataLoading, getRandomEntry, textInfo }) {
   const [shouldAnimate, setShouldAnimate] = useState(false)
   const [animate, setAnimate] = useState(false)
   const textRef = useRef(null)
 
-  const classes = `card__fact ${animate ? 'card__fact--overflow' : ''}`
+  const classes = `fact__text ${animate ? 'fact__text--overflow' : ''}`
 
   const hasOverflow = () => {
     return textRef.current.parentElement.clientHeight - 5 < textRef.current.clientHeight
@@ -26,13 +27,21 @@ export default function CardFact ({ children, imageLoading, dataLoading }) {
     setShouldAnimate(true)
   }, [children])
 
+  const handleNewFact = (evt) => {
+    evt.stopPropagation()
+    getRandomEntry({ textInfo })
+  }
+
   return (
     <div
-      className='card__frontContent'
+      className='fact'
       style={{ opacity: imageLoading || dataLoading ? '0' : '1' }}
       onMouseEnter={handleSelection}
       onMouseLeave={handleDeselection}
     >
+      <CardFactButton position='topRight' onClick={handleNewFact}>
+        ↻
+      </CardFactButton>
       <p
         className={classes}
         ref={textRef}
@@ -42,6 +51,17 @@ export default function CardFact ({ children, imageLoading, dataLoading }) {
       >
         {children}
       </p>
+      {
+        (shouldAnimate) &&
+          <div className='fact__buttonsContainer'>
+            <CardFactButton onClickFunction={setAnimate}>
+              ↑
+            </CardFactButton>
+            <CardFactButton onClickFunction={setAnimate}>
+              ↓
+            </CardFactButton>
+          </div>
+      }
     </div>
   )
 }
