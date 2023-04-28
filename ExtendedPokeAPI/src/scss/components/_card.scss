@@ -2,15 +2,28 @@
 
 .card {
   position: relative;
-  aspect-ratio: 2 / 3;
-  border-radius: 10px;
+  aspect-ratio: 1 / 1;
   transform-style: preserve-3d;
   transition: transform .5s ease;
-  box-shadow: 0px 5px 8px #3030309c;
-
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  background-repeat: space;
+  background-position: bottom 16px left 50%;
+  background-size: calc(25% - 4px);
+  background-origin: content-box;
+  background-clip: content-box;
+  
+  /* &--blackBG {
+    backdrop-filter: ; // CHECK THIS FOR WHITE CONTRAST
+  } */
+  
   &__container {
-    width: min(300px, 100%);
+    width: min(270px, 100%);
     margin-inline: auto;
+    border-radius: 10px;
+    outline: 2px solid #cecece;
+    box-shadow: 0px 5px 8px #14141496;
     cursor: pointer;
 
     &:focus {
@@ -23,67 +36,22 @@
     transform: rotateY(180deg)
   }
 
-  &__front,
-  &__back {
-    padding: 16px;
-    backface-visibility: hidden;
-    height: 100%;
-    width: 100%;
-    border-radius: 10px;
-  }
-
-  &__front {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-  }
-
-  &__back {
-    transform: rotateY(180deg);
-    position: absolute;
-    background-color: #afafaf;
-  }
-
   &__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-  
-  &__name {
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.897);
-    text-overflow: ellipsis;
-    -o-text-overflow: ellipsis;
-    -ms-text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-
-    &--black {
-      color: v.$cl-black;
-    }
-  }
-
-  &__types {
-    display: flex;
-    align-items: center;
-    gap: 6px;
+    background-color: white;
     border-radius: 50px;
-    background-color: v.$cl-white;
-    padding: 4px;
+    padding: 4px 4px 4px 8px;
 
-    &--black {
+    &--dark {
+      color: v.$cl-white;
       background-color: v.$cl-black;
     }
   }
-
-  &__sprite {
-    margin-inline: auto;
-    margin-bottom: 20px;
-
-    img {
-      object-fit: contain;
-    }
+  
+  &__name {
+    @include v.PokeName
   }
 
   &__stats {

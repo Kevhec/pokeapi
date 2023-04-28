@@ -1,6 +1,6 @@
-export default function Loader () {
+export default function Loader ({ mode }) {
   return (
-    <div className='sk-circle'>
+    <div className={`sk-circle ${mode ? `sk-circle--${mode}` : ''}`}>
       <div className='sk-circle1 sk-child' />
       <div className='sk-circle2 sk-child' />
       <div className='sk-circle3 sk-child' />

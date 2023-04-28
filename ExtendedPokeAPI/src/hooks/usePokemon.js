@@ -1,36 +1,22 @@
-import { useEffect, useState } from 'react'
-import { getPokemon } from '../services/getPokemon'
-const TEMPLATE = {
-  id: 0,
-  name: '',
-  sprites: {
-    other: {
-      'official-artwork': { front_default: '' }
-    }
-  },
-  stats: [],
-  types: []
-}
+import { useCallback, useState } from 'react'
+import { fetchFromUrl } from '../services/fetchFromUrl'
 
-export default function usePokemon ({ url }) {
-  const [loading, setLoading] = useState(false)
-  const [pokemon, setPokemon] = useState(TEMPLATE)
+export default function usePokemon () {
+  const [pokemonLoading, setPokemonLoading] = useState(false)
+  const [pokemon, setPokemon] = useState({})
 
-  useEffect(() => {
-    const fetchPokemon = async ({ url }) => {
+  const fetchPokemon = useCallback(
+    async ({ url }) => {
       try {
-        setLoading(true)
-        const newPokemon = await getPokemon({ url })
+        setPokemonLoading(true)
+        const newPokemon = await fetchFromUrl({ url })
         setPokemon(newPokemon)
       } catch (error) {
         console.error(error)
       } finally {
-        setLoading(false)
+        setPokemonLoading(false)
       }
-    }
+    }, [])
 
-    fetchPokemon({ url })
-  }, [])
-
-  return { pokemon, loading }
+  return { pokemon, pokemonLoading, fetchPokemon }
 }

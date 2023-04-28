@@ -1,0 +1,15 @@
+@use '../../globals/variables' as v;
+
+.generalData {
+  line-height: 1;
+  display: flex;
+  justify-content: space-between;
+
+  &:not(:last-child) {
+    margin-bottom: v.rem(16);
+  }
+
+  &__heading, &__content {
+    flex: 1;
+  }
+}

@@ -6,7 +6,7 @@ export default function CardFactButton ({ children, position, onClick }) {
       className={classes}
       onClick={onClick}
     >
-      {children}
+      <p>{children}</p>
     </button>
   )
 }

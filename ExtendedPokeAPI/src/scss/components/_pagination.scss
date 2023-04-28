@@ -3,24 +3,48 @@
 .pagination {
   display: flex;
   justify-content: center;
-  gap: 5px;
-  margin: 16px 0;
+  margin: 28px 0;
+  width: fit-content;
+  margin-inline: auto;
+  box-shadow: 0px 5px 8px #14141496;
+  border-radius: 50px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 400px;
 
   &__link {
     display: flex;
     align-items: center;
     justify-content: center;
     line-height: 1;
-    background-color: white;
     border: unset;
     min-width: 30px;
     height: 30px;
+    background-color: #e0e0e0;
     font-size: v.rem(12);
     font-weight: bold;
+    position: relative;
+    flex: 1;
+
+    &:not(:last-child)::after {
+      content: '';
+      width: 2px;
+      height: 80%;
+      background-color: #b3b3b3;
+      position: absolute;
+      right: -1px;
+      border-radius: 2px;
+      z-index: 2;
+    }
+
+    &:has(+ .pagination__link--current) {
+      &::after {
+        background-color: transparent;
+      }
+    }
 
     @include v.mdq {
-      min-width: 40px;
-      height: 30px;
+      height: 34px;
     }
     
     &:is(:hover, :focus) {
@@ -32,6 +56,10 @@
       color: white;
       &:is(:hover, :focus) {
         background-color: v.$cl-primary;
+      }
+
+      &::after {
+        background-color: transparent !important;
       }
     }
 

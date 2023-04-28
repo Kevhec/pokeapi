@@ -1,6 +1,9 @@
 import { useEffect } from 'react'
 import Results from './components/results/results.jsx'
 import SearchBar from './components/searchBar/searchBar.jsx'
+import Modal from './components/modal/modal.jsx'
+import { ModalOpennerProvider } from './context/modalContext.jsx'
+import { PokemonProvider } from './context/pokemonContext.jsx'
 
 export function App () {
   // Prevent spacebar scroll down
@@ -19,18 +22,21 @@ export function App () {
   }, [])
 
   return (
-    <>
-      <header>
-        <SearchBar />
-      </header>
-      <main>
-        <Results />
-      </main>
-      <footer>
-        <p style={{ textAlign: 'center', color: 'White' }}>
-          Pokedex - KevHec
-        </p>
-      </footer>
-    </>
+    <PokemonProvider>
+      <ModalOpennerProvider>
+        <header>
+          <SearchBar />
+        </header>
+        <main>
+          <Results />
+        </main>
+        <footer>
+          <p style={{ textAlign: 'center', color: 'White' }}>
+            Pokedex - KevHec
+          </p>
+        </footer>
+        <Modal />
+      </ModalOpennerProvider>
+    </PokemonProvider>
   )
 }

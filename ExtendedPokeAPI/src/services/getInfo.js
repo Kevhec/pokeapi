@@ -12,23 +12,25 @@ export async function searchInfo (id) {
   try {
     const res = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`)
 
-    const {
-      flavor_text_entries: resTextInfo,
-      color: { name: resColorName }
-    } = await res.json()
+    const json = await res.json()
 
     const responseToExport = { ...TEMPLATE }
 
     if (res.ok) {
+      const {
+        flavor_text_entries: resTextInfo,
+        color: { name: resColorName }
+      } = json
+
       if (resTextInfo.length !== 0) {
         responseToExport.textInfo = resTextInfo
       }
       responseToExport.colorName = resColorName
     }
 
-    return { responseToExport }
+    return { responseToExport, json }
   } catch (error) {
-    console.log(error)
+    console.error(error)
     return { responseToExport: TEMPLATE }
   }
 }

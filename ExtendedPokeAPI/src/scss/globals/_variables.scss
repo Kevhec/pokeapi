@@ -17,3 +17,12 @@ $checkbox-inactive-color: #959495;
     @content;
   }
 }
+
+@mixin PokeName {
+  text-transform: uppercase;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  -ms-text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}

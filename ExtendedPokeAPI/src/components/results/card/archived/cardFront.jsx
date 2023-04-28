@@ -1,18 +1,15 @@
 import { useEffect, useState } from 'react'
-import { useData } from '../../../hooks/useData'
-import { useRandomFact } from '../../../hooks/useRandomFact'
-import { toSoftColor } from '../../../utils/toSoftColor'
-import Loader from '../../loader'
-import CardFact from './cardFact'
-import CardFigure from './cardFigure'
-import CardImage from './cardImage'
+import { useData } from '../../../../hooks/useData'
+import { toSoftColor } from '../../../../utils/toSoftColor'
+import Loader from '../../../loader'
+import CardFigure from '../../figure'
+import CardImage from '../../pokemonImage'
 
 export default function CardFront ({ name, types, image, pokemonId }) {
   const lowContrastColors = ['white', 'yellow', 'pink']
   const [imageLoading, setImageLoading] = useState(true)
   const {
     data: {
-      textInfo = '',
       colorName = ''
     },
     dataLoading,
@@ -23,12 +20,6 @@ export default function CardFront ({ name, types, image, pokemonId }) {
     getInfo({ pokemonId })
   }, [pokemonId])
 
-  const { randomFact, getRandomEntry } = useRandomFact({ textInfo })
-
-  useEffect(() => {
-    getRandomEntry({ textInfo })
-  }, [textInfo])
-
   const handleImageLoad = () => {
     setImageLoading(false)
   }
@@ -37,8 +28,8 @@ export default function CardFront ({ name, types, image, pokemonId }) {
 
   return (
     <div
-      className='card__front'
-      style={{ backgroundImage: `linear-gradient(to bottom, ${color || '#1b1b1b'} 35%, #afafaf 35%)` }}
+      className={`card__front ${color === 'white' ? 'card__front--blackBG' : ''}`}
+      style={{ backgroundColor: color || '#1b1b1b' }}
     >
       <div className='card__header'>
         <h3
@@ -84,16 +75,6 @@ export default function CardFront ({ name, types, image, pokemonId }) {
           imageLoading={imageLoading}
         />
       </CardFigure>
-
-      <CardFact
-        imageLoading={imageLoading}
-        dataLoading={dataLoading}
-        pokemonId={pokemonId}
-        getRandomEntry={getRandomEntry}
-        textInfo={textInfo}
-      >
-        {randomFact || ''}
-      </CardFact>
     </div>
   )
 }

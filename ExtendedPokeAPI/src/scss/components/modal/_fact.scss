@@ -1,0 +1,53 @@
+@use '../../globals/variables' as v;
+
+.fact {
+  height: 100%;
+  padding: 10px;
+  border: 1px solid v.$cl-black;
+  border-radius: 8px;
+  overflow: hidden;
+
+  &__container {
+    flex: 1;
+    position: relative;
+    grid-row: 1 / 5;
+    grid-column: 2 / 3;
+  }
+
+  &__text {
+    font-size: v.rem(12);
+    position: relative;
+  
+    &:focus {
+      outline-color: v.$cl-primary;
+      outline-offset: 5px;
+    }
+  
+    &--overflow {
+      animation: overflowedFact 4s forwards linear;
+    }
+  }
+
+  &__button {
+    $gap-from-container: -5px;
+
+    width: 18px;
+    border: unset;
+    border-radius: 50%;
+    aspect-ratio: 1 / 1;
+    font-size: 10px;
+    color: white;
+    background-color: black;
+    display: grid;
+    place-content: center;
+    padding: 0;
+    z-index: 10;
+
+    &--topRight {
+      position: absolute;
+      top: $gap-from-container;
+      right: $gap-from-container;
+    }
+  }
+
+}

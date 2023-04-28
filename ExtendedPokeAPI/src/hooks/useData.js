@@ -8,23 +8,25 @@ export function useData () {
   const [data, setData] = useState({})
 
   const getInfo = useCallback(
-    async ({ pokemonId }) => {
+    async ({ id }) => {
       try {
-        if (!pokemonId) return
+        if (!id) return
         setDataLoading(true)
 
         // TODO: Handle fetch 404 error
-        const response = await searchInfo(pokemonId)
+        const response = await searchInfo(id)
         const {
           responseToExport: {
             textInfo,
             colorName
-          }
+          },
+          json
         } = response
 
         const newInfo = {
           textInfo,
-          colorName
+          colorName,
+          json
         }
 
         setDataLoading(false)

@@ -4,6 +4,13 @@
   display: flex;
   flex-direction: column;
   margin-bottom: v.rem(8);
+  text-align: center;
+
+  @media screen and (min-width: 48em) {
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 
   &__name {
     display: grid;

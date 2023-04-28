@@ -18,7 +18,7 @@ export function useManageStat ({ name, baseStat }) {
 
     setMaxValue(newMaxValue)
     setBarLength(newBarLength)
-  }, [name])
+  }, [name, baseStat])
 
   return { maxValue, barLength }
 }

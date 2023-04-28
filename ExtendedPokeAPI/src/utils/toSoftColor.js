@@ -2,7 +2,7 @@ export function toSoftColor (color) {
   let softColor
   switch (color) {
     case 'red':
-      softColor = '#FF5733'
+      softColor = '#F57D31'
       break
     case 'blue':
       softColor = '#0489b6'

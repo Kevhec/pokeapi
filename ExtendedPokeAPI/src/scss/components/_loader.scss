@@ -1,3 +1,5 @@
+@use '../globals/variables' as v;
+
 .sk-circle {
   margin: 100px auto;
   width: 40px;
@@ -17,10 +19,13 @@
   margin: 0 auto;
   width: 15%;
   height: 15%;
-  background-color: #ffffff;
+  background-color: #fff;
   border-radius: 100%;
   -webkit-animation: sk-circleBounceDelay 1.2s infinite ease-in-out both;
   animation: sk-circleBounceDelay 1.2s infinite ease-in-out both;
+}
+.sk-circle--dark .sk-child::before {
+  background-color: v.$cl-black;
 }
 .sk-circle .sk-circle2 {
   -webkit-transform: rotate(30deg);
