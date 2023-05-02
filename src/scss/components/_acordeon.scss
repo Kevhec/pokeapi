@@ -1,0 +1,94 @@
+@use '../globals/variables' as v;
+
+.acordeon {
+  border-radius: 5px;
+  overflow: hidden;
+
+  &--evolution {
+    @media screen and (min-width: 48em){
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      .acordeon {
+        &__header {
+          pointer-events: none;
+          &:hover {
+            background-color: var(--lowOpacityColor);
+          }
+        }
+
+        &__dropdownIcon {
+          display: none;
+        }
+  
+        &__content {
+          max-height: unset;
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+      }  
+    }
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+
+  &__header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: v.rem(5);
+    position: relative;
+    border: unset;
+    border-radius: 5px 5px 0px 0px ;
+    background-color: var(--lowOpacityColor);
+    &:hover {
+      background-color: var(--hoverColor);
+    }
+
+  }
+
+  &__heading {
+    font-weight: 500;
+    line-height: 1;
+    margin: 5px 0;
+    font-size: v.rem(16);
+
+    &--centered {
+      flex: 1;
+    }
+  }
+
+  &__dropdownIcon {
+    width: 25px;
+    transition: transform 400ms ease;
+    position: absolute;
+    right: 5px;
+
+    &--hasDropdown {
+      transform: rotate(-180deg);
+    }
+  }
+
+  &__content {
+    max-height: 0px;
+    overflow-y: scroll;
+    transition: max-height 500ms linear;
+    border: 1px solid var(--color);
+    border-top: none;
+    border-radius: 0px 0px 5px 5px;
+
+    &--hasDropdown {
+      max-height: 110px;
+      transition: max-height 500ms linear;
+    }
+  }
+
+  &__description {
+    font-size: v.rem(14);
+    padding: v.rem(5) v.rem(10);
+  }
+}

@@ -1,0 +1,23 @@
+@use './variables' as v;
+
+// Max-width was defined as space taken by
+// 4 cards plus three times ( number of white
+// spaces between cards) row gap
+
+body {
+  background-color: #333333;
+  font-family: v.$ff-roboto;
+  width: 90%;
+  max-width: 1152px;
+  margin-inline: auto;
+  padding: 20px 0;
+  overflow-x: hidden;
+}
+
+.capitalized {
+  text-transform: capitalize;
+}
+
+.italic {
+  font-style: italic;
+}

@@ -1,0 +1,48 @@
+@use '../../globals/variables' as v;
+
+.mainContent {
+  height: 100%;
+  display: flex;
+  border: 1px solid v.$cl-black;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+
+  &__abilitiesHeading {
+    margin-bottom: v.rem(8);
+  }
+
+  &__Box {
+    position: absolute;
+    padding: v.rem(20) v.rem(10);
+    background-color: v.$cl-white;
+    overflow-y: scroll;
+    flex: 1;
+    inset: 0;
+
+    @media screen and (min-width: 48em) {
+      padding: 1rem;
+    }
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &--stats {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    &--evolutions {
+      list-style-type: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: v.rem(16);
+    }
+  }
+}

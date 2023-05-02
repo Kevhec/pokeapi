@@ -1,0 +1,43 @@
+@use '../globals/variables' as v;
+
+.sprite {
+  margin: auto;
+  position: relative;
+  z-index: 1;
+
+  &--cursorPointer {
+    cursor: pointer;
+  }
+
+  &__image {
+    object-fit: contain;
+    width: 150px;
+    filter: drop-shadow(1px 1px 0 v.$cl-black) 
+            drop-shadow(-1px -1px 0 v.$cl-black)
+    ;
+
+    &--modal {
+      filter: none;
+    }
+
+    &--evolution {
+      border-radius: 50%;
+      padding: 10px;
+      filter: none;
+      margin-inline: auto;
+      margin-bottom: v.rem(16);
+    }
+  }
+
+  &--modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-row: 1 / 4;
+    grid-column: 1 / 2;
+
+    @media screen and (min-width: 48em) {
+      margin: 0;
+    }
+  }
+}

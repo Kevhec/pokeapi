@@ -1,0 +1,26 @@
+@use '../../globals/variables' as v;
+
+.condition {
+  margin-bottom: v.rem(5);
+
+  &__row {
+    &:not(:last-child) {
+      margin-bottom: v.rem(8);
+    }
+  }
+
+  &__heading {
+    font-weight: bold;
+    margin-bottom: v.rem(5);
+  }
+
+  &__body {
+    text-align: center;
+  }
+
+  &__variantList {
+    padding: 0;
+    list-style-type: none;
+    counter-reset: variantCounter 0;
+  }
+}
