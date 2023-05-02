@@ -5,7 +5,7 @@
   padding: 10px;
   border: 1px solid v.$cl-black;
   border-radius: 8px;
-  overflow: hidden;
+  overflow-y: auto;
 
   &__container {
     flex: 1;
