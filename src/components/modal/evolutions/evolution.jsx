@@ -12,7 +12,7 @@ export default function Evolution ({ speciesUrl, evolutionDetails }) {
   const [color, setColor] = useState('#e0e0e0')
   const [evolutionData, setEvolutionData] = useState({})
   const [newEvolutionPokemon, setNewEvolutionPokemon] = useState({})
-  const [, setPokemon] = useContext(PokemonContext)
+  const { setPokemon } = useContext(PokemonContext)
 
   const getEvolutionInfo = async () => {
     const evolutionSpecies = await fetchFromUrl({ url: speciesUrl })

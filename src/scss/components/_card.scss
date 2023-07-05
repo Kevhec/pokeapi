@@ -15,10 +15,12 @@
   background-clip: content-box;
   
   &__container {
+    --pokemonColor: ;
     width: min(270px, 100%);
     margin-inline: auto;
     border-radius: 10px;
     outline: 2px solid #cecece;
+    background-color: var(--pokemonColor);
     box-shadow: 0px 5px 8px #14141496;
     cursor: pointer;
 

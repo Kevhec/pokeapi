@@ -1,10 +1,15 @@
 @use '../../globals/variables' as v;
 
 .fact {
+  --factOpacity: ;
+  --factBC: ;
+
   height: 100%;
   padding: 10px;
   border: 1px solid v.$cl-black;
   border-radius: 8px;
+  background-color: var(--factBC);
+  opacity: var(--factOpacity);
   overflow-y: auto;
 
   &__container {

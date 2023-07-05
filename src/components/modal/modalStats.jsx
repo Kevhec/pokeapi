@@ -4,7 +4,7 @@ export default function ModalStats ({ identifier, activeCategory, stats }) {
   return (
     <ul
       className='mainContent__Box mainContent__Box--stats'
-      style={{ zIndex: activeCategory === identifier ? 100 : 'auto' }}
+      style={{ '--stats_zindex': activeCategory === identifier ? 100 : 'auto' }}
     >
       {stats?.map(stat => {
         const { base_stat: baseStat, stat: { name, url } } = stat

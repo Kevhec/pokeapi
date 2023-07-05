@@ -34,7 +34,7 @@ export function Stat ({ name, baseStat, url }) {
           <span
             className={`stat__bar stat__bar--${name}`}
             style={{
-              width: barLength + '%'
+              width: barLength.toFixed(1) + '%'
             }}
           />
         </div>

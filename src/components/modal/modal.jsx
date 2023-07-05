@@ -11,12 +11,14 @@ import { useRandomFact } from '../../hooks/useRandomFact'
 import { toSoftColor } from '../../utils/toSoftColor'
 import Loader from '../loader'
 import Fact from './fact/Fact'
+import { ColorContext } from '../../context/colorContext'
 
 export default function Modal () {
   const [activeCategory, setActiveCategory] = useState('generalInfo')
   const [imageLoading, setImageLoading] = useState(true)
-  const [isOpen, setIsOpen] = useContext(ModalOpennerContext)
-  const [pokemon] = useContext(PokemonContext)
+  const { isOpen, setIsOpen } = useContext(ModalOpennerContext)
+  const { pokemon } = useContext(PokemonContext)
+  const { color, setColor } = useContext(ColorContext)
 
   useEffect(() => {
     const body = document.body
@@ -45,7 +47,6 @@ export default function Modal () {
     } = {},
     species: {
       flavor_text_entries: textInfo,
-      color: { name: colorName } = {},
       genera,
       base_happiness: baseHappiness,
       egg_groups: eggGroup,
@@ -63,7 +64,7 @@ export default function Modal () {
   }
 
   const handleCloseButton = () => {
-    setIsOpen(!isOpen)
+    setIsOpen(false)
   }
 
   useEffect(() => {
@@ -76,27 +77,35 @@ export default function Modal () {
 
   const basicInfo = { weight, height, baseExperience }
 
-  const color = toSoftColor(colorName)
+  useEffect(() => {
+    setColor(toSoftColor(pokemon?.species?.color?.name))
+  }, [pokemon])
 
   const loadingConditions = imageLoading
 
   return (
     <>
-      <article className={`modal ${!isOpen ? 'modal--closed' : ''} ${loadingConditions ? 'modal--loading' : ''}`}>
+      <article
+        className={`modal ${!isOpen ? 'modal--closed' : ''} ${loadingConditions ? 'modal--loading' : ''}`.trim()}
+        style={{
+          visibility: !isOpen ? 'hidden' : 'visible'
+        }}
+      >
         {loadingConditions ? <Loader mode='dark' /> : <></>}
-        <header className='modal__header' style={{ display: loadingConditions && 'none' }}>
-          <h1 className='modal__heading'>{name} <span className='modal__id'>#{id}</span></h1>
+        <header className={`modal__header ${loadingConditions ? 'modal__header--hidden' : ''}`}>
+          <h1 className='modal__heading'>{name} <span className='modal__id'># {id}</span></h1>
           <button
             className='modal__closeButton'
             onClick={handleCloseButton}
             style={{
-              backgroundColor: color?.concat('3f')
+              '--closeButtonBC': color?.concat('3f'),
+              '--closeButtonBCHover': color?.concat('80')
             }}
           >
             <img src='/assets/close-thick.svg' />
           </button>
         </header>
-        <aside className='modal__sideBar' style={{ display: loadingConditions && 'none' }}>
+        <aside className={`modal__sideBar ${loadingConditions ? 'modal__sideBar--hidden' : ''}`}>
           <Figure parent='modal'>
             <PokemonImage
               src={frontDefault}
@@ -163,7 +172,7 @@ export default function Modal () {
       </article>
       <div
         className={`modal__overlay ${!isOpen ? 'modal__overlay--closed' : ''}`}
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => setIsOpen(false)}
       />
       <svg>
         <defs>

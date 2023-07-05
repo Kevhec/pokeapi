@@ -1,15 +1,10 @@
-// genera
-// generation (url)
-// habitat (url)
-// base happiness
-// eggs group
-// growth rate
 import { useEffect } from 'react'
-import translateGrowthRate from '../../../utils/translateGrowthRate'
 import GeneralData from './generalData'
 import useAditionalInfo from '../../../hooks/useAditionalInfo'
 import langFilter from '../../../utils/langFilter'
 import Ability from './ability'
+import Loader from '../../loader'
+import { translate } from '../../../utils/manualTranslations'
 
 export default function ModalGeneralInfo ({
   identifier,
@@ -27,7 +22,8 @@ export default function ModalGeneralInfo ({
     generationResponse,
     habitatResponse,
     getGeneration,
-    getHabitat
+    getHabitat,
+    aditionalLoading
   } = useAditionalInfo()
 
   useEffect(() => {
@@ -51,14 +47,15 @@ export default function ModalGeneralInfo ({
   return (
     <div
       className='mainContent__Box mainContent__Box--generalInfo'
-      style={{ zIndex: activeCategory === identifier ? 100 : 'auto' }}
+      style={{ '--GI_zindex': activeCategory === identifier ? 100 : 'auto' }}
     >
+      {aditionalLoading && <Loader mode='dark' modifier='fullContainer' />}
       <div className='generalData__container'>
-        <GeneralData heading={generationName} color={color} />
+        <GeneralData heading={generationName || 'Generation'} color={color} />
         <GeneralData heading='Género' content={genus} color={color} />
         <GeneralData heading='Felicidad Base' content={baseHappiness} color={color} />
         <GeneralData heading='Hábitat' content={habitatName} color={color} />
-        <GeneralData heading='Tasa de crecimiento:' content={translateGrowthRate(growthRate?.name)} color={color} />
+        <GeneralData heading='Tasa de crecimiento:' content={translate(growthRate?.name)} color={color} />
       </div>
       <div className='mainContent__abilities'>
         <h3 className='mainContent__abilitiesHeading'>

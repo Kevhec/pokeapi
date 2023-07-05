@@ -9,8 +9,8 @@ import { PokemonContext } from '../../context/pokemonContext.jsx'
 import { ModalOpennerContext } from '../../context/modalContext.jsx'
 
 export default function SearchBar () {
-  const [, setPokemon] = useContext(PokemonContext)
-  const [, setIsOpen] = useContext(ModalOpennerContext)
+  const { setPokemon } = useContext(PokemonContext)
+  const { setIsOpen } = useContext(ModalOpennerContext)
 
   const handleSubmit = async (evt) => {
     evt.preventDefault()

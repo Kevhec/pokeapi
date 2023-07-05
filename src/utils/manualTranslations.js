@@ -30,9 +30,17 @@ const translationsMap = {
   party_type: 'Tipo en el equipo',
   relative_physical_stats: 'Estadísticas físicas relativas',
   time_of_day: 'Hora',
-  trade_species: 'Intercambiar por especie'
+  trade_species: 'Intercambiar por especie',
+
+  // For growth rate
+  slow: 'Lenta',
+  medium: 'Media',
+  fast: 'Rápida',
+  'medium-slow': 'Medianamente lenta',
+  'slow-then-very-fast': 'Lenta, luego muy rápida',
+  'fast-then-very-slow': 'Rápida, luego muy lenta'
 }
 
 export function translate (string) {
-  return translationsMap[string] || 'not found'
+  return translationsMap[string] || 'Sin datos'
 }

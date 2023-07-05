@@ -1,9 +1,9 @@
 export default function AcordeonBody ({ hasDropdown, content }) {
   return (
-    <div className={`acordeon__content ${hasDropdown ? 'acordeon__content--hasDropdown' : ''}`}>
-      <p className='acordeon__description'>
+    <div className={`acordeon__body ${hasDropdown ? 'acordeon__body--hasDropdown' : ''}`}>
+      <div className='acordeon__content'>
         {content}
-      </p>
+      </div>
     </div>
   )
 }

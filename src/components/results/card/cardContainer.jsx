@@ -1,10 +1,12 @@
 import { useContext } from 'react'
 import { ModalOpennerContext } from '../../../context/modalContext'
 import { PokemonContext } from '../../../context/pokemonContext'
+import { ColorContext } from '../../../context/colorContext'
 
-export default function CardContainer ({ children, color, url, pokemon, species }) {
-  const [isOpen, setIsOpen] = useContext(ModalOpennerContext)
-  const [, setPokemon] = useContext(PokemonContext)
+export default function CardContainer ({ children, url, pokemon, species, pokemonLoading, speciesLoading }) {
+  const { setIsOpen } = useContext(ModalOpennerContext)
+  const { setPokemon } = useContext(PokemonContext)
+  const { color } = useContext(ColorContext)
 
   const newPokemon = {
     pokemon,
@@ -13,13 +15,14 @@ export default function CardContainer ({ children, color, url, pokemon, species 
 
   const handleKeyDown = (evt) => {
     if (evt.keyCode === 32) {
-      setIsOpen(!isOpen)
+      setIsOpen(true)
       setPokemon(newPokemon)
     }
   }
 
   const handleClick = () => {
-    setIsOpen(!isOpen)
+    if (pokemonLoading || speciesLoading) return
+    setIsOpen(true)
     setPokemon(newPokemon)
   }
 
@@ -29,7 +32,7 @@ export default function CardContainer ({ children, color, url, pokemon, species 
       onClick={handleClick}
       onKeyDown={handleKeyDown}
       tabIndex={0}
-      style={{ backgroundColor: color || '#1b1b1b' }}
+      style={{ '--pokemonColor': color || '#1b1b1b' }}
     >
       {children}
     </div>

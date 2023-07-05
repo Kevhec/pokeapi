@@ -32,7 +32,7 @@ export default function Ability ({ url, color }) {
 
   return (
     <Acordeon heading={langFilteredName} color={color}>
-      {randomDescription}
+      <p>{randomDescription}</p>
     </Acordeon>
   )
 }

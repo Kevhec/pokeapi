@@ -29,7 +29,7 @@ export default function ModalEvolutions ({ identifier, activeCategory, evolution
   return (
     <ul
       className='mainContent__Box mainContent__Box--evolutions'
-      style={{ zIndex: activeCategory === identifier ? 100 : 'auto' }}
+      style={{ '--evo_zindex': activeCategory === identifier ? 100 : 'auto' }}
     >
       {
         evolutionsData?.map((set, index) => {

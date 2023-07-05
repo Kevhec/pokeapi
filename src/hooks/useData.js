@@ -1,11 +1,16 @@
-import { useCallback, useState } from 'react'
-import { searchInfo } from '../services/getInfo'
-
-// Template of wanted data to avoid "undefined" bugs
+import { useCallback, useState, useContext, useEffect } from 'react'
+import { searchInfo } from '../services/searchInfo'
+import { ColorContext } from '../context/colorContext'
+import { toSoftColor } from '../utils/toSoftColor'
 
 export function useData () {
   const [dataLoading, setDataLoading] = useState(false)
   const [data, setData] = useState({})
+  const { setColor } = useContext(ColorContext)
+
+  useEffect(() => {
+    setColor(toSoftColor(data?.color?.name))
+  }, [data])
 
   const getInfo = useCallback(
     async ({ id }) => {
@@ -14,23 +19,10 @@ export function useData () {
         setDataLoading(true)
 
         // TODO: Handle fetch 404 error
-        const response = await searchInfo(id)
-        const {
-          responseToExport: {
-            textInfo,
-            colorName
-          },
-          json
-        } = response
-
-        const newInfo = {
-          textInfo,
-          colorName,
-          json
-        }
+        const { json } = await searchInfo(id)
 
         setDataLoading(false)
-        setData(newInfo)
+        setData(json)
       } catch (error) {
         console.error(error)
       }

@@ -4,6 +4,7 @@ import SearchBar from './components/searchBar/searchBar.jsx'
 import Modal from './components/modal/modal.jsx'
 import { ModalOpennerProvider } from './context/modalContext.jsx'
 import { PokemonProvider } from './context/pokemonContext.jsx'
+import { ColorProvider } from './context/colorContext.jsx'
 
 export function App () {
   // Prevent spacebar scroll down
@@ -23,7 +24,7 @@ export function App () {
 
   return (
     <PokemonProvider>
-      <ModalOpennerProvider>
+      <ModalOpennerProvider value={{ isOpen: false }}>
         <header>
           <SearchBar />
         </header>
@@ -35,7 +36,9 @@ export function App () {
             Pokedex - KevHec
           </p>
         </footer>
-        <Modal />
+        <ColorProvider>
+          <Modal />
+        </ColorProvider>
       </ModalOpennerProvider>
     </PokemonProvider>
   )

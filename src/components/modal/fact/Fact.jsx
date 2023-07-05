@@ -4,7 +4,7 @@ import { ModalOpennerContext } from '../../../context/modalContext'
 
 export default function Fact ({ children, imageLoading, dataLoading, getRandomEntry, textInfo, lang, color }) {
   const [shouldAnimate, setShouldAnimate] = useState(false)
-  const [isOpen] = useContext(ModalOpennerContext)
+  const { isOpen } = useContext(ModalOpennerContext)
   const [animate, setAnimate] = useState(false)
   const textRef = useRef(null)
 
@@ -46,8 +46,8 @@ export default function Fact ({ children, imageLoading, dataLoading, getRandomEn
       <div
         className='fact'
         style={{
-          opacity: imageLoading || dataLoading ? '0' : '1',
-          backgroundColor: color?.concat('3f')
+          '--factOpacity': imageLoading || dataLoading ? '0' : '1',
+          '--factBC': color?.concat('3f')
         }}
         onMouseEnter={handleSelection}
         onMouseLeave={handleDeselection}
@@ -59,7 +59,7 @@ export default function Fact ({ children, imageLoading, dataLoading, getRandomEn
           onFocus={handleSelection}
           onBlur={handleDeselection}
         >
-          {children || 'hello there'}
+          {children || 'Sin información'}
         </p>
       </div>
     </div>

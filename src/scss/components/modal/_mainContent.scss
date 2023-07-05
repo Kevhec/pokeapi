@@ -4,8 +4,7 @@
   height: 100%;
   display: flex;
   border: 1px solid v.$cl-black;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
+  border-radius: 0px 0px 8px 8px;
   position: relative;
   z-index: 2;
   overflow: hidden;
@@ -18,7 +17,7 @@
     position: absolute;
     padding: v.rem(20) v.rem(10);
     background-color: v.$cl-white;
-    overflow-y: scroll;
+    overflow-y: auto;
     flex: 1;
     inset: 0;
 
@@ -26,18 +25,23 @@
       padding: 1rem;
     }
 
-    &::-webkit-scrollbar {
-      display: none;
+    &--generalInfo {
+      --GI_zindex: ;
+      z-index: var(--GI_zindex);
     }
 
     &--stats {
+      --stats_zindex: ;
+      position: relative;
+      z-index: var(--stats_zindex);
       display: flex;
       flex-direction: column;
       justify-content: center;
-      position: relative;
     }
 
     &--evolutions {
+      --evo_zindex: ;
+      z-index: var(--evo_zindex);
       list-style-type: none;
       display: flex;
       flex-direction: column;

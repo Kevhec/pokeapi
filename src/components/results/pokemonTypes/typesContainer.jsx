@@ -3,7 +3,7 @@ import Type from './type'
 export default function TypesContainer ({ types, modifier }) {
   return (
     <div
-      className={'types'.concat(modifier ? ` types--${modifier}` : '')}
+      className={`types ${modifier ? ` types--${modifier}` : ''}`}
     >
       {types?.map(type => {
         const { type: { name } } = type

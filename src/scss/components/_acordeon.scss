@@ -21,7 +21,7 @@
           display: none;
         }
   
-        &__content {
+        &__body {
           max-height: unset;
           flex: 1;
           display: flex;
@@ -73,7 +73,7 @@
     }
   }
 
-  &__content {
+  &__body {
     max-height: 0px;
     overflow-y: auto;
     transition: max-height 500ms linear;
@@ -87,7 +87,7 @@
     }
   }
 
-  &__description {
+  &__content {
     font-size: v.rem(14);
     padding: v.rem(5) v.rem(10);
   }

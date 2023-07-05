@@ -1,9 +1,10 @@
 import { useContext } from 'react'
 import Card from './card'
 import { ModalOpennerContext } from '../../../context/modalContext'
+import { ColorProvider } from '../../../context/colorContext'
 
 export default function CardsSection ({ pokemonList }) {
-  const [isOpen] = useContext(ModalOpennerContext)
+  const { isOpen } = useContext(ModalOpennerContext)
   if (!pokemonList) return
 
   return (
@@ -12,10 +13,11 @@ export default function CardsSection ({ pokemonList }) {
         pokemonList.map((pokemon) => {
           const { url, name } = pokemon
           return (
-            <Card
-              url={url}
-              key={name}
-            />
+            <ColorProvider key={name}>
+              <Card
+                url={url}
+              />
+            </ColorProvider>
           )
         })
       }

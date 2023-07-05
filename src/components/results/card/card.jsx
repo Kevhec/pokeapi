@@ -1,12 +1,12 @@
 import Loader from '../../loader.jsx'
 import usePokemon from '../../../hooks/usePokemon.js'
 import CardContainer from './cardContainer.jsx'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { useData } from '../../../hooks/useData.js'
-import { toSoftColor } from '../../../utils/toSoftColor.js'
 import Figure from '../figure.jsx'
 import PokemonImage from '../pokemonImage.jsx'
 import TypesContainer from '../pokemonTypes/typesContainer.jsx'
+import { ColorContext } from '../../../context/colorContext.jsx'
 
 export default function Card ({ url }) {
   const {
@@ -21,9 +21,10 @@ export default function Card ({ url }) {
       } = {},
       types
     },
-    loading,
+    pokemonLoading,
     fetchPokemon
   } = usePokemon()
+  const { color } = useContext(ColorContext)
 
   useEffect(() => {
     fetchPokemon({ url })
@@ -32,10 +33,7 @@ export default function Card ({ url }) {
   const lowContrastColors = ['white', 'yellow', 'pink']
   const [imageLoading, setImageLoading] = useState(true)
   const {
-    data: {
-      colorName = '',
-      json: species
-    },
+    data: species,
     dataLoading,
     getInfo
   } = useData()
@@ -48,16 +46,15 @@ export default function Card ({ url }) {
     setImageLoading(false)
   }
 
-  const color = toSoftColor(colorName)
-
   return (
-    loading || name === ''
+    pokemonLoading || name === ''
       ? <Loader />
       : <CardContainer
-          color={color}
           url={url}
           pokemon={pokemon}
           species={species}
+          pokemonLoading={pokemonLoading}
+          speciesLoading={dataLoading}
         >
         <div
           className={`card ${color === 'white' ? 'card--blackBG' : ''}`}
@@ -66,7 +63,7 @@ export default function Card ({ url }) {
           }}
         >
           <div className={
-                `card__header ${lowContrastColors.some(color => colorName === color)
+                `card__header ${lowContrastColors.some(c => color === c)
                   ? 'card__header--dark'
                   : ''
                 }`
